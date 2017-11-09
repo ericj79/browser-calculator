@@ -6,56 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calculator</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <div class="container">
-        <form name="calculator">
-            <div id="output" class="row m-1 lead">&nbsp;</div>
-            <div class="row  m-1">
-                <input type="number" name="input" id="input" class="form-control">
+    <form name="calculator">
+        <div class="container col">
+            <div id="output" class="row pt pb text-right">&nbsp;</div>
+            <div class="row pb">
+                <input type="text" name="input" id="input" class="text-right">
             </div>
-            <div class="row">
-                <div class="col-10">
-                    <div class="row m-1">
-                        <div class="col">
-                            <button class="btn btn-lg btn-block btn-primary">7</button>
+            <div class="row flex-1 pb">
+                <div id="numberButtons" class="col flex-1">
+                    <div class="row pb flex-1">
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary">7</button>
                         </div>
-                        <div class="col">
-                            <button class="btn btn-lg btn-block btn-primary">8</button>
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary">8</button>
                         </div>
-                        <div class="col">
-                            <button class="btn btn-lg btn-block btn-primary">9</button>
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary">9</button>
                         </div>
                     </div>
-                    <div class="row m-1">
-                        <button class="col btn btn-lg btn-primary">4</button>
-                        <button class="col btn btn-lg btn-primary">5</button>
-                        <button class="col btn btn-lg btn-primary">6</button>
+                    <div class="row pb flex-1">
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary">4</button>
+                        </div>
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary">5</button>
+                        </div>
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary">6</button>
+                        </div>
                     </div>
-                    <div class="row">
-                        <button class="col btn btn-lg btn-primary">1</button>
-                        <button class="col btn btn-lg btn-primary">2</button>
-                        <button class="col btn btn-lg btn-primary">3</button>
+                    <div class="row pb flex-1">
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary">1</button>
+                        </div>
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary">2</button>
+                        </div>
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary">3</button>
+                        </div>
                     </div>
-                    <div class="row">
-                        <button class="col-8 btn btn-lg btn-primary">0</button>
-                        <button class="col-4 btn btn-lg btn-primary">.</button>
+                    <div class="row flex-1">
+                        <div class="flex-2 pr">
+                            <button class="flex-2 btn btn-primary">0</button>
+                        </div>
+                        <div class="flex-1 pr">
+                            <button class="flex-1 btn btn-primary">.</button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-2">
-                    <div class="row"><button class="btn col btn-info">CLR</button></div>
-                    <div class="row"><button class="btn col btn-info">&times;</button></div>
-                    <div class="row"><button class="btn col btn-info">&#247;</button></div>
-                    <div class="row"><button class="btn col btn-info">-</button></div>
-                    <div class="row"><button class="btn col btn-info">+</button></div>
-                    <div class="row"><button class="btn col btn-success">=</button></div>
+                <div class="col">
+                    <div class="pb expand"><button class="btn btn-info">CLR</button></div>
+                    <div class="pb expand"><button class="btn btn-info ">&times;</button></div>
+                    <div class="pb expand"><button class="btn btn-info ">&#247;</button></div>
+                    <div class="pb expand"><button class="btn btn-info ">-</button></div>
+                    <div class="pb expand"><button class="btn btn-info ">+</button></div>
+                    <div class="flex-2"><button class="btn btn-success ">=</button></div>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </body>
 
 </html>
