@@ -87,8 +87,6 @@
          * anything else can be ignored
          */
 
-        console.log("Key Press", keyEvent);
-
         // charcode for 0 is 48. then it counts of to 57 for 9
         if (keyEvent.charCode >= 48 && keyEvent.charCode <= 57) {
             onNumber(keyEvent.key);
