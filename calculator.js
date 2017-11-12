@@ -2,6 +2,7 @@
     let currentValue = "";
     let inputs = []; // array of string to track what the current equation is
     const operators = ["+", "-", "*", "/"];
+    const precisionError = new RegExp(/00+1$/);
 
     /**
      * Update the HTML
@@ -12,7 +13,7 @@
         let currentOperator = null;
         inputs.forEach(item => {
             if (item === "=") {
-                output += "= " + total.toPrecision();
+                output += "= " + total.toPrecision().replace(precisionError, "");
             } else if (operators.indexOf(item) >= 0) {
                 currentOperator = item;
                 // this is an operator
@@ -71,7 +72,9 @@
         document.getElementById("output").innerHTML = output.length ?
             output :
             "&nbsp;";
-        document.calculator.input.value = total.toPrecision();
+        document.calculator.input.value = total
+            .toPrecision()
+            .replace(precisionError, "");
     }
 
     /** 
