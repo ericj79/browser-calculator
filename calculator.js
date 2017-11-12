@@ -1,19 +1,20 @@
 (function() {
     let currentValue = "";
     let inputs = []; // array of string to track what the current equation is
-    let operators = ["+", "-", "*", "/"];
+    const operators = ["+", "-", "*", "/"];
 
     /**
      * Update the HTML
      */
     function onUpdate() {
-        console.log("On Update");
-
         let total = 0;
         let output = "";
         let currentOperator = null;
         inputs.forEach(item => {
-            if (operators.indexOf(item) >= 0) {
+            if (item === "=") {
+                output += "= " + total.toPrecision();
+            } else if (operators.indexOf(item) >= 0) {
+                currentOperator = item;
                 // this is an operator
                 // substitute times and divide
                 let str = "";
@@ -28,7 +29,7 @@
                         str = item;
                         break;
                 }
-                currentOperator = item;
+                output += str;
             } else {
                 // this is a number
 
@@ -92,8 +93,6 @@
      * Append it to the end of the current number, plus handle special cases
      */
     function onNumber(number) {
-        console.log("On Number", number);
-
         if (currentValue.length) {
             currentValue += number; // string concatonation
         } else {
@@ -109,7 +108,6 @@
      * Append it to the end of the current number, plus handle special cases
      */
     function onDecimal() {
-        console.log("On Decimal");
         if (currentValue.indexOf(".") === -1) {
             if (currentValue.length) {
                 currentValue += ".";
@@ -126,8 +124,19 @@
      * handle operator keys
      */
     function onOperator(operator) {
-        console.log("On Operator", operator);
-        inputs.push(currentValue);
+        if (currentValue.length) {
+            // normal case
+            inputs.push(currentValue);
+        } else {
+            // somone hit an operator right ofter the equals two operators in a row
+            if (inputs.length > 0) {
+                // two operators in a row, so just replace the last one with this
+                inputs.pop();
+            } else {
+                // operator right after equals, so put the total in the start of the equation
+                inputs.push(this.calculator.input.value);
+            }
+        }
         currentValue = "";
         inputs.push(operator);
         onUpdate();
@@ -137,14 +146,20 @@
      * handle clear action
      */
     function onReset() {
-        console.log("On Reset");
+        currentValue = "";
+        inputs = [];
+        onUpdate();
     }
 
     /**
      * figure out equation
      */
     function onEqual() {
-        console.log("On Equal");
+        inputs.push(currentValue);
+        inputs.push("=");
+        onUpdate();
+        currentValue = "";
+        inputs = [];
     }
 
     /**
@@ -188,7 +203,10 @@
             .getElementById("buttonEqual")
             .addEventListener("click", () => onEqual(), false);
 
-        onUpdate();
+        // capture all key events
+        window.addEventListener("keypress", onKeyPress, false);
+
+        onReset();
     }
 
     //run init on load;
