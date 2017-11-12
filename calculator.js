@@ -1,9 +1,81 @@
 (function() {
-    let output = ""; // String that will be used to populate the output area in the calculator
+    let currentValue = "";
     let inputs = []; // array of string to track what the current equation is
-    let display = ""; // string to track the value that goes into teh input display
-    let total = 0; // the current total value of the equation
+    let operators = ["+", "-", "*", "/"];
 
+    /**
+     * Update the HTML
+     */
+    function onUpdate() {
+        console.log("On Update");
+
+        let total = 0;
+        let output = "";
+        let currentOperator = null;
+        inputs.forEach(item => {
+            if (operators.indexOf(item) >= 0) {
+                // this is an operator
+                // substitute times and divide
+                let str = "";
+                switch (item) {
+                    case "*":
+                        str = "&times;";
+                        break;
+                    case "/":
+                        str = "&#247;";
+                        break;
+                    default:
+                        str = item;
+                        break;
+                }
+                currentOperator = item;
+            } else {
+                // this is a number
+
+                const decimal = item.indexOf(".");
+                let currentSignificant = 0;
+                if (decimal >= 0) {
+                    currentSignificant = item.length - decimal;
+                }
+
+                // add it to the output
+                output += item + " ";
+
+                let number = 0;
+                if (currentSignificant > 0) {
+                    number = parseFloat(item);
+                } else {
+                    number = parseInt(item);
+                }
+
+                switch (currentOperator) {
+                    case "*":
+                        total *= number;
+                        break;
+                    case "/":
+                        total /= number;
+                        break;
+                    case "+":
+                        total += number;
+                        break;
+                    case "-":
+                        total -= number;
+                        break;
+                    default:
+                        total = number;
+                        break;
+                }
+            }
+        });
+        document.getElementById("output").innerHTML = output.length ?
+            output :
+            "&nbsp;";
+        document.calculator.input.value = total.toPrecision();
+    }
+
+    /** 
+     * handle key events
+     */
     function onKeyPress(keyEvent) {
         /* Check the key that is pressed and send it to the proper function 
          * For numbers send it to the on number function
@@ -21,6 +93,14 @@
      */
     function onNumber(number) {
         console.log("On Number", number);
+
+        if (currentValue.length) {
+            currentValue += number; // string concatonation
+        } else {
+            currentValue = number;
+        }
+
+        document.calculator.input.value = currentValue;
     }
 
     /**
@@ -30,6 +110,16 @@
      */
     function onDecimal() {
         console.log("On Decimal");
+        if (currentValue.indexOf(".") === -1) {
+            if (currentValue.length) {
+                currentValue += ".";
+            } else {
+                currentValue = "0.";
+            }
+        }
+        // if there is already a deicaml, then just ignore this
+
+        document.calculator.input.value = currentValue;
     }
 
     /**
@@ -37,6 +127,10 @@
      */
     function onOperator(operator) {
         console.log("On Operator", operator);
+        inputs.push(currentValue);
+        currentValue = "";
+        inputs.push(operator);
+        onUpdate();
     }
 
     /**
@@ -94,7 +188,7 @@
             .getElementById("buttonEqual")
             .addEventListener("click", () => onEqual(), false);
 
-        console.log("done with init");
+        onUpdate();
     }
 
     //run init on load;
