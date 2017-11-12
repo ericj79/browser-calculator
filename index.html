@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form name="calculator">
+    <form name="calculator" action="javascript:void(0);">
         <div class="container col">
             <div id="output" class="row pt pb text-right">&nbsp;</div>
             <div class="row pb">
@@ -20,57 +20,58 @@
                 <div id="numberButtons" class="col flex-1">
                     <div class="row pb flex-1">
                         <div class="flex-1 pr">
-                            <button class="btn btn-primary">7</button>
+                            <button class="btn btn-primary" id="button7">7</button>
                         </div>
                         <div class="flex-1 pr">
-                            <button class="btn btn-primary">8</button>
+                            <button class="btn btn-primary" id="button8">8</button>
                         </div>
                         <div class="flex-1 pr">
-                            <button class="btn btn-primary">9</button>
-                        </div>
-                    </div>
-                    <div class="row pb flex-1">
-                        <div class="flex-1 pr">
-                            <button class="btn btn-primary">4</button>
-                        </div>
-                        <div class="flex-1 pr">
-                            <button class="btn btn-primary">5</button>
-                        </div>
-                        <div class="flex-1 pr">
-                            <button class="btn btn-primary">6</button>
+                            <button class="btn btn-primary" id="button9">9</button>
                         </div>
                     </div>
                     <div class="row pb flex-1">
                         <div class="flex-1 pr">
-                            <button class="btn btn-primary">1</button>
+                            <button class="btn btn-primary" id="button4">4</button>
                         </div>
                         <div class="flex-1 pr">
-                            <button class="btn btn-primary">2</button>
+                            <button class="btn btn-primary" id="button5">5</button>
                         </div>
                         <div class="flex-1 pr">
-                            <button class="btn btn-primary">3</button>
+                            <button class="btn btn-primary" id="button6">6</button>
+                        </div>
+                    </div>
+                    <div class="row pb flex-1">
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary" id="button1">1</button>
+                        </div>
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary" id="button2">2</button>
+                        </div>
+                        <div class="flex-1 pr">
+                            <button class="btn btn-primary" id="button3">3</button>
                         </div>
                     </div>
                     <div class="row flex-1">
                         <div class="flex-2 pr">
-                            <button class="flex-2 btn btn-primary">0</button>
+                            <button class="flex-2 btn btn-primary" id="button0">0</button>
                         </div>
                         <div class="flex-1 pr">
-                            <button class="flex-1 btn btn-primary">.</button>
+                            <button class="flex-1 btn btn-primary" id="buttonDecimal">.</button>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="pb expand"><button class="btn btn-info">CLR</button></div>
-                    <div class="pb expand"><button class="btn btn-info ">&times;</button></div>
-                    <div class="pb expand"><button class="btn btn-info ">&#247;</button></div>
-                    <div class="pb expand"><button class="btn btn-info ">-</button></div>
-                    <div class="pb expand"><button class="btn btn-info ">+</button></div>
-                    <div class="flex-2"><button class="btn btn-success ">=</button></div>
+                    <div class="pb expand"><button class="btn btn-info" id="buttonClear">CLR</button></div>
+                    <div class="pb expand"><button class="btn btn-info" id="buttonTimes">&times;</button></div>
+                    <div class="pb expand"><button class="btn btn-info" id="buttonDivide">&#247;</button></div>
+                    <div class="pb expand"><button class="btn btn-info" id="buttonMinus">-</button></div>
+                    <div class="pb expand"><button class="btn btn-info" id="buttonPlus">+</button></div>
+                    <div class="flex-2"><button class="btn btn-success" id="buttonEqual">=</button></div>
                 </div>
             </div>
         </div>
     </form>
+    <script src="./calculator.js"></script>
 </body>
 
 </html>
